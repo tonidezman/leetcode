@@ -8,27 +8,17 @@
 #     end
 # end
 
-def get_max_height(node)
-    return -Float::INFINITY if node.nil?
-    is_leaf = node.left.nil? && node.right.nil?
-    return 1 if is_leaf
-    left_height = get_max_height(node.left)
-    right_height = get_max_height(node.right)
-    return 1 + [left_height, right_height].max
-end
-
-def get_min_height(node)
+def get_height(node)
     return 0 if node.nil?
-    is_leaf = node.left.nil? && node.right.nil?
-    return 1 if is_leaf
-    left_height = get_min_height(node.left)
-    right_height = get_min_height(node.right)
-    return 1 + [left_height, right_height].min
+    return 1 + [get_height(node.left), get_height(node.right)].max
 end
 
 # @param {TreeNode} root
 # @return {Boolean}
 def is_balanced(root)
     return true if root.nil?
-    (get_max_height(root) - get_min_height(root)).abs <= 1
+    left = get_height(root.left)
+    right = get_height(root.right)
+    return false if (right - left).abs > 1
+    return is_balanced(root.left) && is_balanced(root.right)
 end
