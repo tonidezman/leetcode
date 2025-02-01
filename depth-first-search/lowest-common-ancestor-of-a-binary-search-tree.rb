@@ -9,18 +9,9 @@
 
 def dfs(node, target_node, res)
     return if node.nil?
-    if node.val == target_node.val
-        res.append(node)
-        return res
-    end
-    if dfs(node.left, target_node, res)
-        res.append(node)
-        return res
-    end
-    if dfs(node.right, target_node, res)
-        res.append(node)
-        return res
-    end
+    return res.append(node) if node.val == target_node.val
+    return res.append(node) if dfs(node.left, target_node, res)
+    return res.append(node) if dfs(node.right, target_node, res)
 end
 
 def get_path(root, target_node)
