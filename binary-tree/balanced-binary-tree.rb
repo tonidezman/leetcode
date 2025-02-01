@@ -18,7 +18,7 @@ def get_max_height(node)
 end
 
 def get_min_height(node)
-    return Float::INFINITY if node.nil?
+    return 0 if node.nil?
     is_leaf = node.left.nil? && node.right.nil?
     return 1 if is_leaf
     left_height = get_min_height(node.left)
