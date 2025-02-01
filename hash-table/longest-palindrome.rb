@@ -2,13 +2,15 @@
 # @return {Integer}
 def longest_palindrome(s)
     res = 0
-    odd_taken = false
-    s.chars.tally.values.sort.reverse.each do |count|
-        if count.odd?
-            return res if odd_taken
-            odd_taken = true
+    odd_count_present = false
+    s.chars.tally.values.each do |count|
+        if count.even?
+            res += count
+        else
+            res += count - 1
+            odd_count_present = true
         end
-        res += count
     end
+    res += 1 if odd_count_present
     res
 end
