@@ -1,19 +1,19 @@
 # @param {Integer[]} nums
 # @return {Integer}
 def majority_element(nums)
-    a = nums[0]
-    counter = 1
-    1.upto(nums.size-1) do |i|
+    res = nums[0]
+    count = 1
+    (1..nums.size-1).each do |i|
         curr = nums[i]
-        if curr == a
-            counter += 1
+        if curr == res
+            count += 1
         else
-            counter -= 1
-            if counter == 0
-                a = curr
-                counter = 1
+            count -= 1
+            if count == 0
+                res = curr
+                count = 1
             end
         end
     end
-    a
+    res
 end
