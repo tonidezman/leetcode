@@ -20,5 +20,5 @@ def diameter_of_binary_tree(root)
     left = get_depth(root.left)
     right = get_depth(root.right)
     res = left + right
-    [res, diameter_of_binary_tree(root.left), diameter_of_binary_tree(root.right)].max
+    # [res, diameter_of_binary_tree(root.left), diameter_of_binary_tree(root.right)].max
 end
