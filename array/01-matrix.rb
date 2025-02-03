@@ -1,29 +1,39 @@
-def oob(mat, row, col)
-    return true if row < 0 || col < 0
-    return true if row >= mat.size || col >= mat[0].size
-    return false
-end
+require 'thread'
 
-def bfs(mat, row, col, count=0)
-    return Float::INFINITY if oob(mat, row, col) || mat[row][col] == -1
-    return count if mat[row][col].zero?
-    cell = mat[row][col]
-    mat[row][col] = -1
-    res = [bfs(mat, row+1, col, count+1),
-    bfs(mat, row-1, col, count+1),
-    bfs(mat, row, col+1, count+1),
-    bfs(mat, row, col-1, count+1)].min
-    mat[row][col] = cell
-    res
+def oob(mat, r, c)
+    return true if r < 0 || c < 0
+    return true if r >= mat.size || c >= mat[0].size
+    return false
 end
 
 # @param {Integer[][]} mat
 # @return {Integer[][]}
 def update_matrix(mat)
-    0.upto(mat.size-1) do |row|
-        0.upto(mat[0].size-1) do |col|
-            next if mat[row][col].zero?
-            mat[row][col] = bfs(mat, row, col)
+    queue = Queue.new
+    directions = [[1,0], [-1,0], [0,1], [0,-1]]
+
+    mat.each.with_index do |row, r|
+        row.each.with_index do |col, c|
+            if mat[r][c] == 0
+                queue << [r, c, 0]
+            else
+                mat[r][c] = Float::INFINITY
+            end
+        end
+    end
+
+    until queue.empty?
+        r, c, dist = queue.pop
+        if mat[r][c] > dist
+            mat[r][c] = dist
+        end
+        directions.each do |d|
+            dir_r, dir_c = d
+            next_r, next_c, next_dist = dir_r+r, dir_c+c, dist+1
+            next if oob(mat, next_r, next_c)
+            if mat[next_r][next_c] == Float::INFINITY
+                queue << [next_r, next_c, next_dist]
+            end
         end
     end
     mat
