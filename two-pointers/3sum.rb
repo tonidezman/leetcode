@@ -9,7 +9,6 @@ def three_sum(nums)
         r = nums.size-1
         while l < r
             curr_sum = nums[i] + nums[l] + nums[r]
-            puts curr_sum
             if curr_sum == 0
                 res << [nums[i], nums[l], nums[r]]
                 l += 1
