@@ -9,7 +9,7 @@ def insert(intervals, new_interval)
             return res + intervals[i..-1]
         end
 
-        if interval[1] > new_interval[0]
+        if interval[1] >= new_interval[0]
             new_interval = [[interval[0], new_interval[0]].min, [interval[1], new_interval[1]].max]
         else
             res.append(interval)
