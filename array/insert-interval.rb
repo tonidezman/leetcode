@@ -4,17 +4,17 @@
 def insert(intervals, new_interval)
     res = []
     intervals.each.with_index do |interval, i|
-        if new_interval[1] < interval[0]
-            res << new_interval
+        if interval[0] > new_interval[1]
+            res.append(new_interval)
             return res + intervals[i..-1]
         end
 
-        if interval[1] < new_interval[0]
-            res << interval
-        else
+        if interval[1] > new_interval[0]
             new_interval = [[interval[0], new_interval[0]].min, [interval[1], new_interval[1]].max]
+        else
+            res.append(interval)
         end
     end
-    res << new_interval
+    res.append(new_interval)
     res
 end
