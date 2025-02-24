@@ -69,6 +69,10 @@ class MyLinkedList:
         if curr is None:
             return
         prev = curr.prev
+        if prev is None:
+            self.head = curr.next
+            self.head.prev = None
+            return
         prev.next = curr.next
         if curr.next:
             curr.next.prev = prev
