@@ -1,83 +1,79 @@
 class Node:
-    def __init__(self, val, next=None, prev=None):
+    def __init__(self, val):
         self.val = val
-        self.next = next
-        self.prev = prev
+        self.next = None
+        self.prev = None
 
 class MyLinkedList:
 
     def __init__(self):
-        # dummy = Node("dummy")
         self.head = None
         self.tail = None
+        self.length = 0
         
-    def get(self, index: int) -> int:
-        curr = self.head
-        while curr and index > 0:
-            curr = curr.next
-            if curr is None:
-                return -1
-            index -= 1
-        return curr.val
-            
-    def addAtHead(self, val: int) -> None:
-        new_head = Node(val)
-        if self.head is None:
-            self.head = new_head
-            self.tail = new_head
-            return
 
-        new_head.next = self.head
-        self.head.prev = new_head
-        self.head = new_head
-        
+    def get(self, index: int) -> int:
+        if index >= self.length:
+            return None
+        curr = self.head
+        for i in range(index):
+            curr = curr.next
+        return curr.val
+
+    def addAtHead(self, val: int) -> None:
+        if self.head is None:
+            self.head = Node(val)
+            self.tail = self.head
+        else:
+            prev_head = self.head
+            self.head = Node(val)
+            prev_head.prev = self.head
+            self.head.next = prev_head
+        self.length += 1
+
     def addAtTail(self, val: int) -> None:
-        new_node = Node(val)
         if self.tail is None:
-            self.head = new_node
-            self.tail = new_node
-            return
-        self.tail.next = new_node
-        new_node.prev = self.tail
-        self.tail = new_node
+            self.head = Node(val)
+            self.tail = self.head
+        else:
+            prev_tail = self.tail
+            self.tail = Node(val)
+            self.tail.prev = prev_tail
+            prev_tail.next = self.tail
+        self.length += 1
 
     def addAtIndex(self, index: int, val: int) -> None:
-        if index == 0:
-            self.addAtHead(val)
+        if index >= self.length:
             return
         curr = self.head
-        while curr and index > 0:
+        for i in range(index):
             curr = curr.next
-            index -= 1
-        if index == 0 and curr is None:
-            self.addAtTail(val)
-            return
-
+        prev = curr.prev
         new_node = Node(val)
-        prev_node = curr.prev
-        prev_node.next = new_node
-        new_node.prev = prev_node
+        prev.next = new_node
+        new_node.prev = prev
         new_node.next = curr
         curr.prev = new_node
-        return
+        self.length += 1
 
     def deleteAtIndex(self, index: int) -> None:
+        if index >= self.length:
+            return
         curr = self.head
-        while curr and index > 0:
+        for _ in range(index):
             curr = curr.next
-            index -= 1
-        if curr is None:
-            return
+        if curr == self.head:
+            self.head = None
+            self.tail = None
+        elif curr == self.tail:
+            prev = curr.prev
+            prev.next = None
+            self.tail = prev
         prev = curr.prev
-        if prev is None:
-            self.head = curr.next
-            if self.head is None:
-                return
-            self.head.prev = None
-            return
         prev.next = curr.next
-        if curr.next:
-            curr.next.prev = prev
+        curr.next.prev = prev
+
+        self.length -= 1
         
 
 
