@@ -69,10 +69,10 @@ class MyLinkedList:
             prev = curr.prev
             prev.next = None
             self.tail = prev
-        prev = curr.prev
-        prev.next = curr.next
-        curr.next.prev = prev
-
+        else:
+            prev = curr.prev
+            prev.next = curr.next
+            curr.next.prev = prev
         self.length -= 1
         
 
