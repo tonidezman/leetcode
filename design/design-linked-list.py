@@ -59,7 +59,7 @@ class MyLinkedList:
         while curr and index > 0:
             curr = curr.next
             index -= 1
-        if not curr or index != 0 and curr == self.tail:
+        if not curr or index != 0 or curr == self.tail:
             return
         
         prev_node, next_node = curr.prev, curr.next
