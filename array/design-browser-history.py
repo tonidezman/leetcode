@@ -7,8 +7,9 @@ class Node:
 class BrowserHistory:
 
     def __init__(self, homepage: str):
+        homepage = Node(homepage)
         self.homepage = homepage
-        self.curr = Node(homepage)
+        self.curr = homepage
 
     def visit(self, url: str) -> None:
         new_node = Node(url)
@@ -19,7 +20,7 @@ class BrowserHistory:
     def back(self, steps: int) -> str:
         curr = self.curr
         while curr and steps > 0:
-            if curr.val == self.homepage:
+            if curr == self.homepage:
                 self.curr = curr
                 return curr.val
             curr = curr.prev
