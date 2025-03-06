@@ -20,6 +20,7 @@ class BrowserHistory:
         curr = self.curr
         while curr and steps > 0:
             if curr.val == self.homepage:
+                self.curr = curr
                 return curr.val
             curr = curr.prev
             steps -= 1
