@@ -33,7 +33,7 @@ class BrowserHistory:
             steps -= 1
         self.curr = curr
         return curr.val
-        
+
 
 
 # Your BrowserHistory object will be instantiated and called as such:
