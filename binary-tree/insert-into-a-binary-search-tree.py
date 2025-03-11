@@ -15,7 +15,7 @@ class Solution:
             else:
                 node = node.left
         if parent is None:
-            return root
+            return root or TreeNode(val)
         if val > parent.val:
             parent.right = TreeNode(val)
         else:
