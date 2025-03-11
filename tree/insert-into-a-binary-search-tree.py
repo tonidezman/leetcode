@@ -14,6 +14,8 @@ class Solution:
                 curr = curr.right
             else:
                 curr = curr.left
+        if root is None:
+            return TreeNode(val)
         if parent.val < val:
             parent.right = TreeNode(val)
         else:
