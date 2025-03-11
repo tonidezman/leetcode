@@ -23,8 +23,10 @@ class Solution:
                 return root.right
             elif root.right is None:
                 return root.left
-            else:
-                m = self.findMin(root.right)
-                root.val = m.val
-                self.deleteNode(root.right, m.val)
+
+            curr = root.right
+            while curr.left:
+                curr = curr.left
+            root.val = curr.val
+            root.right = self.deleteNode(root.right, curr.val)
         return root
