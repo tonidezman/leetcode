@@ -14,6 +14,8 @@ class Solution:
                 node = node.right
             else:
                 node = node.left
+        if parent is None:
+            return
         if val > parent.val:
             parent.right = TreeNode(val)
         else:
