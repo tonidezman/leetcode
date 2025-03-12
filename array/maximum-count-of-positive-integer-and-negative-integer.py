@@ -30,5 +30,10 @@ class Solution:
         idx = find_negative(nums)
         negative_len = idx + 1
         idx = find_positive(nums)
-        positive_len = len(nums) - idx
+        if idx == -1:
+            positive_len = 0
+        else:
+            positive_len = len(nums) - idx
+        print("tonko")
+        print(positive_len)
         return max(negative_len, positive_len)
