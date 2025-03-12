@@ -1,5 +1,8 @@
 class Solution:
     def maximumCount(self, nums: List[int]) -> int:
+        if nums and nums[0] == 0 and nums[-1] == 0:
+            return 0
+
         def find_negative(arr):
             l, r = 0, len(arr)-1
             res = -1
@@ -13,8 +16,6 @@ class Solution:
             return res
 
         def find_positive(arr):
-            if arr and arr[0] == 0 and arr[-1] == 0:
-                return 0
             l, r = 0, len(arr)-1
             res = -1
             while l <= r:
