@@ -13,6 +13,8 @@ class Solution:
             return res
 
         def find_positive(arr):
+            if arr and arr[0] == 0 and arr[-1] == 0:
+                return 0
             l, r = 0, len(arr)-1
             res = -1
             while l <= r:
