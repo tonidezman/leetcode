@@ -1,7 +1,7 @@
 # @param {Integer} n
 # @return {Boolean}
 def is_happy(n)
-    1.upto(1_000) do
+    1.upto(100) do
         return true if n == 1
         n = n.to_s.split('').map(&:to_i).map { |n| n ** 2}.sum
     end
