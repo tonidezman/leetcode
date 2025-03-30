@@ -6,11 +6,11 @@ class Solution:
             return False
 
         def dp(r: int, c: int, cache: dict[tuple[int, int], int]) -> int:
+            if oob(r, c) or obstacleGrid[r][c] == 1:
+                return 0
             is_last_cell = r == len(obstacleGrid)-1 and c == len(obstacleGrid[0])-1
             if is_last_cell:
                 return 1
-            if oob(r, c) or obstacleGrid[r][c] == 1:
-                return 0
             key = (r, c)
             if key in cache:
                 return cache[key]
