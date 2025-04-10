@@ -1,8 +1,15 @@
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
-        l = 0
-        for r in range(len(nums)):
-            if nums[r] != val:
-                nums[l] = nums[r]
-                l += 1
-        return l
+        i = 0
+        for j in range(len(nums)):
+            if nums[j] != val:
+                nums[i] = nums[j]
+                i += 1
+        return i
+        
+
+"""
+[0,1,3,0,4,_,_,_], val = 2
+           ^
+               ^
+"""
