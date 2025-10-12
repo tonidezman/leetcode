@@ -1,15 +1,19 @@
-class Solution:
-    def isValid(self, s: str) -> bool:
-        mapping = {
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        braces = {
             "(": ")",
             "[": "]",
             "{": "}",
         }
         stack = []
         for brace in s:
-            if brace in mapping:
-                stack.append(mapping[brace])
+            if brace in braces:
+                stack.append(braces[brace])
             else:
-                if len(stack) == 0 or brace != stack.pop():
+                if len(stack) > 0 and stack.pop() != brace:
                     return False
         return len(stack) == 0
