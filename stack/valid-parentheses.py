@@ -14,6 +14,6 @@ class Solution(object):
             if brace in braces:
                 stack.append(braces[brace])
             else:
-                if len(stack) > 0 and stack.pop() != brace:
+                if len(stack) == 0 or stack.pop() != brace:
                     return False
         return len(stack) == 0
