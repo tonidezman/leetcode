@@ -1,11 +1,16 @@
-from collections import Counter
+from collections import deque
+
 class Solution:
     def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
-        counter = Counter(students)
-        for sandwich in sandwiches:
-            if counter[sandwich] > 0:
-                counter[sandwich] -= 1
+        students = deque(students)
+        sandwiches = deque(sandwiches)
+
+        for _ in range(len(students)*5):
+            if len(sandwiches) == 0:
+                return len(students)
+            student = students.popleft()
+            if sandwiches and sandwiches[0] == student:
+                sandwiches.popleft()
             else:
-                return sum(counter.values())
-        return sum(counter.values())
-        
+                students.append(student)
+        return len(students)
