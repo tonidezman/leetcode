@@ -20,7 +20,7 @@ class BrowserHistory:
         while self.stack_forw and steps > 0:
             self.stack_back.append(self.stack_forw.pop())
             steps -= 1
-        return self.stack_back[-1]
+        return (self.stack_back and self.stack_back[-1]) or self.homepage
         
 
 
