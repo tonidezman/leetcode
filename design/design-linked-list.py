@@ -17,6 +17,8 @@ class MyLinkedList:
         curr = self.head.next
         for _ in range(index):
             curr = curr.next
+        if curr is None:
+            return -1
         return curr.val
 
     def addAtHead(self, val: int) -> None:
