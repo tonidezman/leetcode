@@ -15,7 +15,6 @@ class Solution:
     def longestPalindrome(self, s: str) -> str:
         if len(s) < 2:
             return s
-        s = s.lower()
         res = ""
         for i in range(len(s)-1):
             if s[i] == s[i+1]:
