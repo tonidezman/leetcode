@@ -1,12 +1,13 @@
 def get_palindrome(s: str, i: int, j: int) -> int:
-    res = s[i]
-    while i > 0 and j < (len(s)-1):
+    res = ""
+    while i >= 0 and j < (len(s)):
+        if s[i] != s[j]:
+            return res
         i -= 1
         j += 1
-        if s[i] != s[j]:
-            curr = s[i+1:j]
-            if len(curr) > len(res):
-                res = curr
+        curr = s[i+1:j]
+        if len(curr) > len(res):
+            res = curr
     return res
 
 
@@ -25,3 +26,4 @@ class Solution:
             if len(curr) > len(res):
                 res = curr
         return res
+        
