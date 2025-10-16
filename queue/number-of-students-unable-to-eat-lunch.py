@@ -3,14 +3,17 @@ from collections import deque
 class Solution:
     def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
         students = deque(students)
-        sandwiches = deque(sandwiches)
+        n = len(students)
+        res = n
+        for sandwich in sandwiches:
+            count = 0
+            while count < n and students[0] != sandwich:
+                count += 1
+                students.append(students.popleft())
 
-        for _ in range(len(students)*5):
-            if len(sandwiches) == 0:
-                return len(students)
-            student = students.popleft()
-            if sandwiches and sandwiches[0] == student:
-                sandwiches.popleft()
+            if students[0] == sandwich:
+                students.popleft()
+                res -= 1
             else:
-                students.append(student)
-        return len(students)
+                break
+        return res
