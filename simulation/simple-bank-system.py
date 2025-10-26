@@ -5,6 +5,8 @@ class Bank:
         
 
     def transfer(self, account1: int, account2: int, money: int) -> bool:
+        start_money_1 = None
+        start_money_2 = None
         try:
             start_money_1 = self.balance[account1-1]
             if start_money_1 < money:
